@@ -27,5 +27,8 @@ router.post("/message", (req, res) => {
   }
 });
 
+//Estaticos
+app.use("/app", express.static("public"));
+
 app.listen(3000);
 console.log("La aplicacion está escuchando en http://localhost:3000");
