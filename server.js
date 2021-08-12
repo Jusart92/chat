@@ -1,37 +1,11 @@
 const express = require("express");
-const response = require("./network/response");
-// const bodyParser = require("body-parser");
-const router = express.Router();
+const router = require("./network/routes");
 
 var app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(router);
-// app.use(bodyParser.json());
 
-router.get("/message", (req, res) => {
-  console.log(req.headers);
-  res.header({
-    "custom-header": "Valor personalizado",
-  });
-  // res.send("Lista de mensajes");
-  response.success(req, res, "Lista de Mensajes");
-});
-
-router.post("/message", (req, res) => {
-  console.log(req.query);
-  if (req.query.error == "ok") {
-    response.error(
-      req,
-      res,
-      "Error inesperado",
-      500,
-      "Es solo una simulación de los errores"
-    );
-  } else {
-    response.success(req, res, "Creado correctamente", 201);
-  }
-});
+router(app);
 
 //Estaticos
 app.use("/app", express.static("public"));
