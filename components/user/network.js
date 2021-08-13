@@ -15,4 +15,15 @@ router.post("/", (req, res) => {
     });
 });
 
+router.get("/", (req, res) => {
+  controller
+    .getUser()
+    .then((userList) => {
+      response.success(req, res, userList, 200);
+    })
+    .catch((e) => {
+      reponse.error(req, res, "Unexpected Error", 500, e);
+    });
+});
+
 module.exports = router;
