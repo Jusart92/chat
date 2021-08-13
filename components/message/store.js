@@ -1,16 +1,4 @@
-const db = require("mongoose");
 const Model = require("./model");
-const MONGOPASS = process.env.PASSWORD;
-
-db.Promise = global.Promise;
-db.connect(
-  `mongodb+srv://jusart92:${MONGOPASS}@cluster0.anotp.mongodb.net/backendNode`,
-  {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  }
-);
-console.log("[db] Connectada con éxito");
 
 function addMessage(message) {
   const myMessage = new Model(message);
