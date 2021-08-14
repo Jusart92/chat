@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const server = require("http").Server(app);
 
+const cors = require("cors");
 const socket = require("./socket");
 const db = require("./db");
 const router = require("./network/routes");
@@ -10,6 +11,8 @@ const MONGOPASS = process.env.PASSWORD;
 const url = `mongodb+srv://jusart92:${MONGOPASS}@cluster0.anotp.mongodb.net/backendNode`;
 
 db(url);
+app.use(cors());
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
